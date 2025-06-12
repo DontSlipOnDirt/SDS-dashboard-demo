@@ -1,8 +1,8 @@
 import streamlit as st
-# from langchain_openai import ChatOpenAI
-# from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-system_prompt = "You assist in research"
+system_prompt = "You answer questions"
 
 # Initialize session state for OpenAI token and messages
 if "openai_token" not in st.session_state:
@@ -13,12 +13,11 @@ if "messages" not in st.session_state:
     ]
 
 # Sidebar: Input OpenAI token
-st.sidebar.title("OpenAI API Key")
 token_input = st.sidebar.text_input(
-    "Enter your OpenAI API key",
+    "OpenAI API key",
     type="password",
     placeholder="sk-...",
-    help="Provide your OpenAI API key to use the chatbot."
+    help="Provide your OpenAI API key to use the chatbot. You can get one from https://platform.openai.com/ after adding credit."
 )
 
 if token_input:
