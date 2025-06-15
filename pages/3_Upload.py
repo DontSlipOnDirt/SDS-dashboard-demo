@@ -1,10 +1,18 @@
 import streamlit as st
 import anthropic
 
-with st.sidebar:
-    anthropic_api_key = st.text_input("Anthropic API Key", key="file_qa_api_key", type="password")
+st.set_page_config(page_title="Upload", page_icon="⬆️")
 
-st.title("📝 File Q&A with Anthropic")
+# API key input
+with st.sidebar:
+    anthropic_api_key = st.text_input(
+        "Anthropic API Key",
+        key="file_qa_api_key", 
+        type="password",
+        help="Provide your Anthropic API key to use the chatbot. You can get one from https://console.anthropic.com/ after adding credit."
+    )
+
+st.title("File Q&A with Anthropic")
 uploaded_file = st.file_uploader("Upload an article", type=("txt", "md"))
 question = st.text_input(
     "Ask something about the article",
