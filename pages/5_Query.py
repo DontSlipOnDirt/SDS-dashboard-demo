@@ -422,7 +422,7 @@ if st.button("Restore Database"):
     st.success("Database restored!")
 
 # Query input
-query = st.text_area("Enter your SQL query:")
+query = st.text_area("Enter your SQL query:", height=200)
 
 if st.button("Run Query"):
     try:
@@ -433,12 +433,48 @@ if st.button("Run Query"):
         st.error(f"Error: {e}")
 
 # Additional Features
+st.subheader("Example queries")
+with st.popover("Example Queries"):
+    st.markdown("""1. List all products with their category and supplier names: 
+```sql
+SELECT 
+    Products.ProductName,
+    Categories.CategoryName,
+    Suppliers.SupplierName
+FROM Products
+JOIN Categories ON Products.CategoryID = Categories.CategoryID
+JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID;
+```
+
+2. Show the total number of orders placed by each customer
+```sql
+SELECT 
+    Customers.CustomerName,
+    COUNT(Orders.OrderID) AS OrderCount
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+GROUP BY Customers.CustomerID;
+```
+
+3. List the top 5 most expensive products
+```sql
+SELECT 
+    ProductName, 
+    UnitPrice
+FROM Products
+ORDER BY UnitPrice DESC
+LIMIT 5;
+```
+
+""")
+
 st.subheader("Database Tables")
-if st.button("Show Tables"):
-    try:
-        conn = st.session_state.db_conn
-        tables_query = "SELECT name FROM sqlite_master WHERE type='table';"
-        tables = pd.read_sql_query(tables_query, conn)
-        st.write(tables)
-    except Exception as e:
-        st.error(f"Error: {e}")
+st.image("/home/jchen/LLM-dashboard/database/relational_schema.png", caption="Database schema")
+# if st.button("Show Tables"):
+#     try:
+#         conn = st.session_state.db_conn
+#         tables_query = "SELECT name FROM sqlite_master WHERE type='table';"
+#         tables = pd.read_sql_query(tables_query, conn)
+#         st.write(tables)
+#     except Exception as e:
+#         st.error(f"Error: {e}")

@@ -1,0 +1,14 @@
+// Relational Database Schema
+digraph {
+	Products [label="Products|ProductID (PK)\lProductName\lCategoryID (FK)\lSupplierID (FK)\lUnitPrice\l" shape=record]
+	Categories [label="Categories|CategoryID (PK)\lCategoryName\l" shape=record]
+	Suppliers [label="Suppliers|SupplierID (PK)\lSupplierName\l" shape=record]
+	Customers [label="Customers|CustomerID (PK)\lCustomerName\l" shape=record]
+	Orders [label="Orders|OrderID (PK)\lCustomerID (FK)\lOrderDate\lAmount\l" shape=record]
+	OrderDetails [label="OrderDetails|OrderID (FK)\lProductID (FK)\lQuantity\l" shape=record]
+	Products -> Categories
+	Products -> Suppliers
+	Orders -> Customers
+	OrderDetails -> Orders
+	OrderDetails -> Products
+}

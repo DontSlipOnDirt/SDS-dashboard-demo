@@ -5,15 +5,12 @@ st.set_page_config(
     page_icon="👋",
 )
 
-st.write("# Welcome to the LLM dashboard")
+st.write("# Welcome to the dashboard demo")
 
 st.sidebar.success("Select a page above.")
 
 st.markdown(
     """
-    This dashboard demonstrates some of the capabilities of LLMs. In the sidebar you can find:
-    - Chat
-    - Figure generation
-    - RAG discussion
-"""
+    This dashboard demonstrates some of the capabilities of Streamlit and its integrability with LLMs.
+    """
 )
