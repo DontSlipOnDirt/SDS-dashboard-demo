@@ -469,7 +469,7 @@ LIMIT 5;
 """)
 
 st.subheader("Database Tables")
-st.image("/home/jchen/LLM-dashboard/database/relational_schema.png", caption="Database schema")
+st.image("database/relational_schema.png", caption="Database schema")
 # if st.button("Show Tables"):
 #     try:
 #         conn = st.session_state.db_conn
