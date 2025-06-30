@@ -1,7 +1,7 @@
 # LLM-dashboard
-LLM dashboard example with these pages (TODO):
+LLM dashboard example with these pages:
 - Dataframe, plots, charts page
-- Chatbot interface
+- Backend, SQL queries
 - Embedded apps
-- Backend, SQL queries?
+- Chatbot interface
 - Upload file, LLM Q&A, generate plots, etc.

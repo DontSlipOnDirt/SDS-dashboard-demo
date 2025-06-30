@@ -470,11 +470,3 @@ LIMIT 5;
 
 st.subheader("Database Tables")
 st.image("database/relational_schema.png", caption="Database schema")
-# if st.button("Show Tables"):
-#     try:
-#         conn = st.session_state.db_conn
-#         tables_query = "SELECT name FROM sqlite_master WHERE type='table';"
-#         tables = pd.read_sql_query(tables_query, conn)
-#         st.write(tables)
-#     except Exception as e:
-#         st.error(f"Error: {e}")
