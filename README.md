@@ -1,5 +1,5 @@
 # LLM-dashboard
-LLM dashboard example with these pages:
+LLM dashboard that should have these pages:
 - Dataframe, plots, charts page
 - Backend, SQL queries
 - Embedded apps

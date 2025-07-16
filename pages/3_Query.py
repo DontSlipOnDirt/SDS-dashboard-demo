@@ -469,4 +469,9 @@ LIMIT 5;
 """)
 
 st.subheader("Database Tables")
-st.image("database/relational_schema.png", caption="Database schema")
+try:
+    st.image("database/relational_schema.png", caption="Database schema")
+    # st.write("relative path")
+except:
+    st.image("/home/jchen/LLM-dashboard/database/relational_schema.png", caption="Database schema")
+    # st.write("specific path")

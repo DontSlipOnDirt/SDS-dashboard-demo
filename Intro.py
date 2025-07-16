@@ -11,6 +11,6 @@ st.sidebar.success("Select a page above.")
 
 st.markdown(
     """
-    This dashboard demonstrates some of the capabilities of Streamlit and its integrability with LLMs.
+    This dashboard demonstrates the capabilities of Streamlit and its integrability with several other components.
     """
 )
