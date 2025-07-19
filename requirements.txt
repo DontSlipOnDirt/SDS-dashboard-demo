@@ -1,8 +1,0 @@
-altair>=5.5.0
-anthropic>=0.54.0
-graphviz>=0.21
-langchain-core>=0.3.64
-langchain-openai>=0.3.22
-pandas>=2.3.0
-streamlit>=1.45.1
-transformers>=4.52.4
