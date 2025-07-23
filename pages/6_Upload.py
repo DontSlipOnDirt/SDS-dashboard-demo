@@ -13,7 +13,7 @@ with st.sidebar:
     )
 
 st.title("File Q&A with Anthropic")
-uploaded_file = st.file_uploader("Upload an article", type=("txt", "md"))
+uploaded_file = st.file_uploader("Upload an article", type=("txt", "md")) # upload component
 question = st.text_input(
     "Ask something about the article",
     placeholder="Can you give me a short summary?",
@@ -28,11 +28,12 @@ if uploaded_file and question and anthropic_api_key:
     prompt = f"""{anthropic.HUMAN_PROMPT} Here's an article:\n\n<article>
     {article}\n\n</article>\n\n{question}{anthropic.AI_PROMPT}"""
 
+    # anthropic client
     client = anthropic.Client(api_key=anthropic_api_key)
     response = client.completions.create(
         prompt=prompt,
         stop_sequences=[anthropic.HUMAN_PROMPT],
-        model="claude-v1",  # "claude-2" for Claude 2 model
+        model="claude-v1",
         max_tokens_to_sample=100,
     )
     st.write("### Answer")

@@ -6,7 +6,6 @@ from urllib.error import URLError
 st.set_page_config(page_title="DataFrame", page_icon="📊")
 
 st.markdown("# DataFrame Demo")
-# st.sidebar.header("DataFrame Demo")
 st.write(
     """This demo shows how to use `st.write` to visualize Pandas DataFrames.
 (Data courtesy of the [UN Data Explorer](http://data.un.org/Explorer.aspx).)"""
@@ -29,6 +28,7 @@ try:
     if not countries:
         st.error("Please select at least one country.")
     else:
+        # display data
         data = df.loc[countries]
         data /= 1000000.0
         st.write("### Gross Agricultural Production ($B)", data.sort_index())

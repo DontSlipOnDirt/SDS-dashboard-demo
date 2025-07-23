@@ -13,7 +13,7 @@ st.write(
 to display geospatial data."""
 )
 
-
+# cache data
 @st.cache_data
 def from_data_file(filename):
     url = (
@@ -24,6 +24,7 @@ def from_data_file(filename):
 
 
 try:
+    # define layers to be displayed with pdk
     ALL_LAYERS = {
         "Bike Rentals": pdk.Layer(
             "HexagonLayer",
@@ -65,16 +66,19 @@ try:
             width_max_pixels=30,
         ),
     }
+
+    # sidebar with checkboxes
     st.sidebar.markdown("### Map Layers")
     selected_layers = [
         layer
         for layer_name, layer in ALL_LAYERS.items()
         if st.sidebar.checkbox(layer_name, True)
     ]
+
     if selected_layers:
         st.pydeck_chart(
             pdk.Deck(
-                map_style="mapbox://styles/mapbox/light-v9",
+                map_style="pdk.map_styles.LIGHT",
                 initial_view_state={
                     "latitude": 37.76,
                     "longitude": -122.4,
@@ -86,6 +90,7 @@ try:
         )
     else:
         st.error("Please choose at least one layer above.")
+
 except URLError as e:
     st.error(
         """

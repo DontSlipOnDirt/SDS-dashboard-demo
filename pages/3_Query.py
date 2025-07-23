@@ -409,17 +409,12 @@ def init_db():
     conn.commit()
     return conn
 
-# Streamlit App
 st.title("SQL practice")
 st.write("Practice SQL queries on tables made with `SQLite`.")
 
 # Initialize or restore database
 if "db_conn" not in st.session_state:
     st.session_state.db_conn = init_db()
-
-if st.button("Restore Database"):
-    st.session_state.db_conn = init_db()
-    st.success("Database restored!")
 
 # Query input
 query = st.text_area("Enter your SQL query:", height=200)
@@ -432,46 +427,50 @@ if st.button("Run Query"):
     except Exception as e:
         st.error(f"Error: {e}")
 
-# Additional Features
-st.subheader("Example queries")
-with st.popover("Example Queries"):
-    st.markdown("""1. List all products with their category and supplier names: 
-```sql
-SELECT 
-    Products.ProductName,
-    Categories.CategoryName,
-    Suppliers.SupplierName
-FROM Products
-JOIN Categories ON Products.CategoryID = Categories.CategoryID
-JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID;
-```
+with st.sidebar:
 
-2. Show the total number of orders placed by each customer
-```sql
-SELECT 
-    Customers.CustomerName,
-    COUNT(Orders.OrderID) AS OrderCount
-FROM Customers
-LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
-GROUP BY Customers.CustomerID;
-```
+    # restore data base button
+    if st.button("Restore Database"):
+        st.session_state.db_conn = init_db()
+        st.success("Database restored!")
 
-3. List the top 5 most expensive products
-```sql
-SELECT 
-    ProductName, 
-    UnitPrice
-FROM Products
-ORDER BY UnitPrice DESC
-LIMIT 5;
-```
+    # Example queries
+    with st.popover("Example Queries"):
+        st.markdown("""1. List all products with their category and supplier names: 
+    ```sql
+    SELECT 
+        Products.ProductName,
+        Categories.CategoryName,
+        Suppliers.SupplierName
+    FROM Products
+    JOIN Categories ON Products.CategoryID = Categories.CategoryID
+    JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID;
+    ```
 
-""")
+    2. Show the total number of orders placed by each customer
+    ```sql
+    SELECT 
+        Customers.CustomerName,
+        COUNT(Orders.OrderID) AS OrderCount
+    FROM Customers
+    LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+    GROUP BY Customers.CustomerID;
+    ```
+
+    3. List the top 5 most expensive products
+    ```sql
+    SELECT 
+        ProductName, 
+        UnitPrice
+    FROM Products
+    ORDER BY UnitPrice DESC
+    LIMIT 5;
+    ```
+
+    """)
 
 st.subheader("Database Tables")
 try:
     st.image("database/relational_schema.png", caption="Database schema")
-    # st.write("relative path")
 except:
-    st.image("/home/jchen/LLM-dashboard/database/relational_schema.png", caption="Database schema")
-    # st.write("specific path")
+    st.image("/home/jchen/SDS-dashboard-demo/database/relational_schema.png", caption="Database schema")

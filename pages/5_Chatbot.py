@@ -46,6 +46,7 @@ if user_input := st.chat_input("Type your message here..."):
              ]
         )
 
+        # append messages to the chat and display them
         st.session_state.messages.append({"role": "user", "content": user_input})
         st.chat_message("user").write(user_input)
         response = llm.invoke(prompt_template.invoke({"messages": st.session_state.messages}))
